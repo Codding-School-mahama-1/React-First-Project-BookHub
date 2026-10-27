@@ -27,8 +27,9 @@ Every submission **must** follow these rules. Code that breaks them will be aske
 - The UI **must** be built from React components — no page written as one long block of HTML/JSX inside `App.jsx`.
 - One component per file, and the file name **must** match the component name in PascalCase: `BookCard.jsx` exports `BookCard`.
 - Keep components small and focused: a component does **one** job.
-- Split the page into sections first (`Header`, `BookList`, `BookCard`, `Footer`, …), then refine further as needed.
+- Split the page into sections first (`Navbar`, `Hero`, `BookList`, `BookCard`, `Footer`, …), then refine further as needed.
 - **The navbar is its own component.** `Navbar.jsx` (or `Header.jsx`) holds the logo, links and nav actions — `App.jsx` renders `<Navbar />` and nothing else from it.
+- **The hero section is its own component.** `Hero.jsx` renders the banner (title, tagline, call-to-action) and receives its text as props — never hardcode the headline inside `App.jsx`.
 - **Every button is its own component.** No bare `<button>` written inline in a page or section: extract `<Button label="Add to list" onClick={...} />` (and variants like `PrimaryButton` / `IconButton` if they look different).
 
 ### 2. Pass data with props
@@ -69,6 +70,15 @@ Every submission **must** follow these rules. Code that breaks them will be aske
 ### 5. General
 
 - Components live in `src/components/`; shared data or helpers live in `src/data/` or `src/utils/`.
+
+  | Folder        | Use it for                                                        |
+  | ------------- | ----------------------------------------------------------------- |
+  | `components/` | Reusable UI pieces — `Navbar`, `Hero`, `Button`, `BookCard`        |
+  | `data/`       | Objects and arrays (the books) that components render             |
+  | `utils/`      | Non-UI helper functions: formatting, sorting, filtering           |
+  | `assets/`     | Images you `import` (covers, logos, icons)                        |
+  | `public/`     | Files served as-is at the site root, referenced by plain path     |
+
 - No inline styles repeated across files — use CSS classes or a shared stylesheet.
 - The app must build cleanly: `npm run build` and `npm run lint` both pass before you push.
 
