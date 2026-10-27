@@ -28,6 +28,8 @@ Every submission **must** follow these rules. Code that breaks them will be aske
 - One component per file, and the file name **must** match the component name in PascalCase: `BookCard.jsx` exports `BookCard`.
 - Keep components small and focused: a component does **one** job.
 - Split the page into sections first (`Header`, `BookList`, `BookCard`, `Footer`, …), then refine further as needed.
+- **The navbar is its own component.** `Navbar.jsx` (or `Header.jsx`) holds the logo, links and nav actions — `App.jsx` renders `<Navbar />` and nothing else from it.
+- **Every button is its own component.** No bare `<button>` written inline in a page or section: extract `<Button label="Add to list" onClick={...} />` (and variants like `PrimaryButton` / `IconButton` if they look different).
 
 ### 2. Pass data with props
 
@@ -58,6 +60,7 @@ Every submission **must** follow these rules. Code that breaks them will be aske
 ### 4. Reuse, don't repeat
 
 - Any JSX or logic that appears **twice** must be extracted into its own reusable component.
+- A button style reused across the app exists **once** — as a `Button` component — not copied into every file.
 - Reusable components **must** be driven entirely by props, so the same component can render different content in different places (`<BookCard book={...} />` used for every book).
 - Prefer composition over configuration: pass children or slots (`{children}`, `renderFooter`) instead of piling up boolean props like `isFooterVisible`.
 - Shared helpers (formatting a rating, sorting a list) go in their own functions/modules — not duplicated inline in each component.

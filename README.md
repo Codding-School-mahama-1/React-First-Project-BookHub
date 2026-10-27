@@ -38,6 +38,8 @@ React-First-Project-BookHub/
 │       ├── assets/               # Images and other imported assets
 │       │   └── react.svg
 │       ├── components/           # (create) One reusable component per file
+│       │   ├── Navbar.jsx        # The navigation bar — never inline it in App
+│       │   ├── Button.jsx        # The one button component everyone reuses
 │       │   └── BookCard.jsx
 │       ├── data/                 # (create) Book objects and data arrays
 │       │   └── books.js
@@ -62,8 +64,8 @@ Folders marked ★ matter most: your code lives in `bookhub/src/`, the rules liv
 | You want to…                       | Put it in                    |
 | ---------------------------------- | ---------------------------- |
 | Add or edit a component            | `bookhub/src/components/`    |
-| Store book objects / data arrays   | `bookhub/src/data/`          |
-| Add a shared helper function       | `bookhub/src/utils/`         |
+| Store book objects / data arrays   | `bookhub/src/data/`          || Add a shared helper function       | `bookhub/src/utils/`          |
+| Change the navbar or a button      | `bookhub/src/components/`     |
 | Change global styles               | `bookhub/src/index.css`      |
 | Use a book cover in the app        | copy it into `bookhub/src/assets/` or `bookhub/public/` |
 
@@ -73,7 +75,7 @@ Folders marked ★ matter most: your code lives in `bookhub/src/`, the rules liv
 
 Read **[`bookhub/README.md`](bookhub/README.md)** before you start. In short, every submission must:
 
-1. Build the UI from **components** (one per file, PascalCase names).
+1. Build the UI from **components** (one per file, PascalCase names) — including the **navbar** and **every button**.
 2. Pass data through **props** — no hardcoded content inside components.
 3. Model records as **objects** and render collections with `.map()`.
 4. **Reuse** anything that appears twice as its own component.
