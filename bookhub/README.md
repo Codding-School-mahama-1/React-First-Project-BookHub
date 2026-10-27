@@ -1,8 +1,76 @@
-# React + Vite
+# BookHub — React Class Project
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A Vite + React starter for the BookHub class project.
 
-Currently, two official plugins are available:
+## Getting started
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+```bash
+npm install
+npm run dev
+```
+
+Other useful scripts:
+
+| Command           | What it does                          |
+| ----------------- | ------------------------------------- |
+| `npm run dev`     | Start the dev server with hot reload  |
+| `npm run build`   | Build the app for production          |
+| `npm run preview` | Preview the production build          |
+| `npm run lint`    | Run ESLint                            |
+
+## Project rules
+
+Every submission **must** follow these rules. Code that breaks them will be asked to be reworked.
+
+### 1. Everything is a component
+
+- The UI **must** be built from React components — no page written as one long block of HTML/JSX inside `App.jsx`.
+- One component per file, and the file name **must** match the component name in PascalCase: `BookCard.jsx` exports `BookCard`.
+- Keep components small and focused: a component does **one** job.
+- Split the page into sections first (`Header`, `BookList`, `BookCard`, `Footer`, …), then refine further as needed.
+
+### 2. Pass data with props
+
+- Components **must not** hardcode the content they display. Titles, authors, ratings, images, and labels arrive through **props**.
+- Destructure props in the signature: `function BookCard({ title, author, cover })`.
+- Props flow **down** from parent to child. Never prop-drill through a component that does not use the value — lift state to the closest common parent instead.
+- Give every prop a sensible default or handle the missing case, so a component never crashes on empty data.
+- Pass functions through props when a child needs to notify a parent (`onSelect`, `onRemove`, …).
+
+### 3. Model data as objects
+
+- Book data (and any similar record) **must** be stored as an **object**, not as scattered separate variables:
+
+  ```js
+  const book = {
+    id: 1,
+    title: "Clean Code",
+    author: "Robert C. Martin",
+    rating: 4.5,
+    cover: "/book_covers/clean_code_cover.png",
+  };
+  ```
+
+- Keep data arrays **outside** the component (`const books = [...]`) or in their own module, and render them with `.map()`. Never copy-paste the same JSX once per book.
+- Use consistent keys across objects of the same collection, and pass `book.id` (not the array index) as the React `key`.
+- Access fields by name only — do not rely on positional values.
+
+### 4. Reuse, don't repeat
+
+- Any JSX or logic that appears **twice** must be extracted into its own reusable component.
+- Reusable components **must** be driven entirely by props, so the same component can render different content in different places (`<BookCard book={...} />` used for every book).
+- Prefer composition over configuration: pass children or slots (`{children}`, `renderFooter`) instead of piling up boolean props like `isFooterVisible`.
+- Shared helpers (formatting a rating, sorting a list) go in their own functions/modules — not duplicated inline in each component.
+- Reusable components must not reach out to global state or import sibling components; they receive everything they need.
+
+### 5. General
+
+- Components live in `src/components/`; shared data or helpers live in `src/data/` or `src/utils/`.
+- No inline styles repeated across files — use CSS classes or a shared stylesheet.
+- The app must build cleanly: `npm run build` and `npm run lint` both pass before you push.
+
+## Tech
+
+- [Vite](https://vite.dev/) for the dev server and build
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react) for Fast Refresh
+- [ESLint](https://eslint.org/) with the React recommended rules
